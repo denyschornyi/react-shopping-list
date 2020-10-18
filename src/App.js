@@ -5,12 +5,20 @@ import { FormControl, Input, IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 import ListItem from './ListItem';
+import Total from './Total';
 
 function App() {
-
   const [list, setList] = useState([{id: 1, title: 'Find a job', count: 1, done: false }, 
                                     {id: 2, title: 'Bananas', count: 2, done: true }]);
   const [input, setInput] = useState('');
+
+  const totalCount = () => {
+    let total = 0;
+    list.map(item => {
+      total += item.count;
+    })
+    return total;
+  }
 
   const createItem = (title) => {
     return {
@@ -77,7 +85,8 @@ function App() {
         })
       }
 
-      {/* Total */}
+      
+      <Total total={totalCount()} />
     </div>
   );
 }
