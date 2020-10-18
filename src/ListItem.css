@@ -1,0 +1,10 @@
+.listItem{
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.listItem__count{
+    border: 1px solid black;
+    border-radius: 40%;
+}
