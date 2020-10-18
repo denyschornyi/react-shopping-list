@@ -7,23 +7,24 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 
 function ListItem(props) {
-    const {title, count, done, onChange} = props;
+    const {title, count, done, onChange, onCount} = props;
 
     let className = 'listItem';
     if(done){
         className += ' done';
     }
 
+
     return (
         <div className={className}>
             <input type="checkbox" checked={done? true : false} onChange={onChange}/>
             <h2 className="listItem__title">{title}</h2>
             <div className="listItem__count">
-                <IconButton>
+                <IconButton onClick={() => onCount('REMOVE')}>
                     <RemoveIcon />
                 </IconButton>
                 <strong>{count}</strong>
-                <IconButton>
+                <IconButton onClick={() => onCount('ADD')}>
                     <AddIcon />
                 </IconButton>
             </div>

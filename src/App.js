@@ -34,6 +34,21 @@ function App() {
     const newItem = {...oldItem, done: !oldItem.done};
     setList([...list.slice(0, idx), newItem, ...list.slice(idx+1)])
   }
+
+  const onCount = (id, operation) => {
+    let operationNumber;
+    if(operation === 'ADD'){
+      operationNumber = 1;
+    }else if(operation === 'REMOVE'){
+      operationNumber = -1;
+    }else{
+      return;
+    }
+    const idx = list.findIndex(el => el.id === id);
+    const oldItem = list[idx];
+    const newItem = {...oldItem, count: oldItem.count + operationNumber};
+    setList([...list.slice(0, idx), newItem, ...list.slice(idx+1)])
+  }
   
   return (
     <div className="app">
@@ -55,12 +70,10 @@ function App() {
         </FormControl>
       </form>
 
-      {/* List */}
-
       {
         list.map(item => {
           const {id, ...otherProps} = item;
-          return <ListItem key={id} {...otherProps} onChange={() => onChangeInput(id)}/>
+          return <ListItem key={id} {...otherProps} onChange={() => onChangeInput(id)} onCount={(operation) => onCount(id, operation)}/>
         })
       }
 
