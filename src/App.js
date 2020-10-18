@@ -54,6 +54,9 @@ function App() {
     }
     const idx = list.findIndex(el => el.id === id);
     const oldItem = list[idx];
+    if(oldItem.count === 1 && operation === 'REMOVE' ){
+      return;
+    }
     const newItem = {...oldItem, count: oldItem.count + operationNumber};
     setList([...list.slice(0, idx), newItem, ...list.slice(idx+1)])
   }
