@@ -28,6 +28,12 @@ function App() {
     setInput('');
   }
 
+  const onChangeInput  = (id) => {
+    const idx = list.findIndex(el => el.id === id);
+    const oldItem = list[idx];
+    const newItem = {...oldItem, done: !oldItem.done};
+    setList([...list.slice(0, idx), newItem, ...list.slice(idx+1)])
+  }
   
   return (
     <div className="app">
@@ -54,7 +60,7 @@ function App() {
       {
         list.map(item => {
           const {id, ...otherProps} = item;
-          return <ListItem key={id} {...otherProps} />
+          return <ListItem key={id} {...otherProps} onChange={() => onChangeInput(id)}/>
         })
       }
 

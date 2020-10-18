@@ -4,6 +4,10 @@
     justify-content: space-between;
 }
 
+.listItem.done .listItem__title{
+    text-decoration: line-through;
+}
+
 .listItem__count{
     border: 1px solid black;
     border-radius: 40%;
